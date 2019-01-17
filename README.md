@@ -31,11 +31,12 @@ npm run serve
 - Видалення наявних todo’шок для поточного користувача
 - Відмітити todo як завершене, або незавершене для поточного користувача
 
-Перед початком виконання завдань обов'язково ознайомитися з двома першими матеріалами нижче.
+Перед початком виконання завдань обов'язково ознайомитися з трьом першими матеріалами нижче.
 
 ## Матеріали:
 - What Is A RESTful API? Explanation of REST & HTTP (youtube)[https://www.youtube.com/watch?v=Q-BpqyOT3a8]
 - What is the difference between GET, PUT, PATCH, POST and DELETE? (stackoverflow)[https://stackoverflow.com/a/40711235/3768172]
+- Ознайомтеся з документацією (json-server)[https://github.com/typicode/json-server#routes] для того щоб розуміти, як фільтрувати, сортувати дані
 - Підручник кантора по AJAX (javascript.ru)[http://learn.javascript.ru/ajax]
 
 ## Питання:
