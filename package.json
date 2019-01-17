@@ -1,0 +1,14 @@
+{
+  "name": "todo-list-with-server",
+  "version": "1.0.0",
+  "description": "Learn how to work with API by creating a simple to-do list.",
+  "main": "index.js",
+  "scripts": {
+    "serve": "json-server db.json --routes routes.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^0.14.2"
+  }
+}

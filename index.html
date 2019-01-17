@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>NaN Blog</title>
+</head>
+<body>
+  <h1>My F*ucking TODO</h1>
+
+<script>
+  // URI http://localhost:3000/api/todos/200 з точки зору REST API вказує в базі даних на 
+  // todo об'єкт з id 200
+
+  function getTodo (todoId) {
+    var xml = new XMLHttpRequest()
+    xml.open('GET', 'http://localhost:3000/api/todos/' + todoId, true)
+    xml.onload = function () {
+      console.log('Request status code: ', xml.status, '; status text: ', xml.statusText)
+      if (xml.status >= 200 && xml.status < 300) {
+        console.log(JSON.parse(xml.responseText))
+      } else {
+        console.log('Something went wrong :(')
+      }
+    }
+    xml.send()
+  }
+
+  function createTodo (todo) {
+    var xml = new XMLHttpRequest()
+    // Використовуємо POST метод оскільки ми хочемо створити новий об'єкт у базі даних,
+    // А ще ми не вказуємо id нашого todo, як ми це робили для запиту GET http://localhost:3000/api/todos/200
+    // бо у випадку створення нової todo'шки бекенд сам створить id.
+    xml.open('POST', 'http://localhost:3000/api/todos', true)
+    // Важливо вказати, якого типу ми будемо надсилати дані на сервер
+    // У нашому випадку це буде JSON, який ми передаємо при виклику методу xml.send(...)
+    xml.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
+    xml.onload = function () {
+      console.log('Request status code: ', xml.status, '; status text: ', xml.statusText)
+      if (xml.status >= 200 && xml.status < 300) {
+        console.log(JSON.parse(xml.responseText))
+      } else {
+        console.log('Something went wrong :(')
+      }
+    }
+    xml.send(JSON.stringify(todo))
+  }
+
+  function completeTodo (todoId) {
+    var xml = new XMLHttpRequest()
+    // HTTP PATCH метод означає, що ми хочемо модифікувати або замінити частину ресурсу.
+    // У даноми прикладі ми хочемо змінити статус todo'шки на completed
+    xml.open('PATCH', 'http://localhost:3000/api/todos/' + todoId, true)
+    // Важливо вказати, якого типу ми будемо надсилати дані на сервер
+    // У нашому випадку це буде JSON, який ми передаємо при виклику методу xml.send(...)
+    xml.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
+    xml.onload = function () {
+      console.log('Request status code: ', xml.status, '; status text: ', xml.statusText)
+      if (xml.status >= 200 && xml.status < 300) {
+        console.log(JSON.parse(xml.responseText))
+      } else {
+        console.log('Something went wrong :(')
+      }
+    }
+    // Зверни увагу на те, що ми перетворюємо JS'овий об'єкт на JSON перед тим як відправити його на сервер
+    xml.send(JSON.stringify({
+      completed: true
+    }))
+  }
+</script>
+</body>
+</html>
