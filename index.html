@@ -10,6 +10,22 @@
   <h1>My F*ucking TODO</h1>
 
 <script>
+  
+  function getUserInfo(userId) {
+      var xml = new XMLHttpRequest();
+      xml.open("GET","http://localhost:3000/api/users/" + userId, true);
+      xml.onload = function () {
+          console.log("Request status code: " + xml.status + "; status text" + xml.statusText);
+          if(xml.status>=200 && xml.status<300)
+              console.log(JSON.parse(xml.responseText));
+          else console.log("Problem here");
+      };
+      xml.send();
+  }
+
+  //getUserInfo(10);
+  
+  
   // URI http://localhost:3000/api/todos/200 з точки зору REST API вказує в базі даних на 
   // todo об'єкт з id 200
 
@@ -27,6 +43,8 @@
     xml.send()
   }
 
+
+
   // Для того щоб отримати список todo'шок для конкретного користувача
   function getTodoList (userId) {
     var xml = new XMLHttpRequest()
@@ -41,6 +59,8 @@
     }
     xml.send()
   }
+
+  //getTodoList(10);
 
   function createTodo (todo) {
     var xml = new XMLHttpRequest()
@@ -62,6 +82,7 @@
     xml.send(JSON.stringify(todo))
   }
 
+
   function createTodoExample () {
     createTodo({
       userId: 10,
@@ -69,6 +90,22 @@
       completed: false
     })
   }
+
+  //createTodoExample();
+  
+  function deleteTodo(todoId) {
+      var xml = new XMLHttpRequest();
+      xml.open("DELETE", "http://localhost:3000/api/todos/" + todoId, true);
+      xml.onload = function () {
+          console.log('Request status code: ', xml.status, '; status text: ', xml.statusText);
+          if(xml.status>=200 && xml.status<300)
+              console.log(JSON.parse(xml.responseText));
+          else console.log("problems here");
+      };
+      xml.send();
+  }
+
+  //deleteTodo(184);
 
   function completeTodo (todoId) {
     var xml = new XMLHttpRequest()
@@ -93,8 +130,10 @@
   }
 
   function completeTodoExample () {
-    completeTodo(100)
+    completeTodo(187)
   }
+
+  completeTodoExample();
 </script>
 </body>
 </html>
