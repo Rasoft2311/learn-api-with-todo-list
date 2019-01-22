@@ -1,0 +1,7 @@
+.todo__title{
+}
+
+.todo__title--done{
+    text-decoration: line-through;
+}
+
